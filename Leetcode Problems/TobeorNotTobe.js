@@ -4,8 +4,7 @@ function expect(actual) {
       if (actual === expected) {
         return true;
       } else {
-        throw new Error("Not Equal"); // fixed extra space
-      } 
+        throw new Error("Not Equal"); }
     },
     notToBe(expected) {
       if (actual !== expected) {
