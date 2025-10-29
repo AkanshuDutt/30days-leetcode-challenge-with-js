@@ -1,5 +1,4 @@
-//  In JS we are create function within other function. The Inner function access to any  variable to above it.
-//  For  batter clearification   example  below
+
    function Akanshu (a){
      return  function Dutt(b){
          const c =a+b;
