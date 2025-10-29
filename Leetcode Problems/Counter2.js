@@ -23,7 +23,7 @@ var createCounter = function(init) {
 // Function create karna
 const counter = createCounter(5);
 
-// Function calls ke output print karna
+
 console.log(counter.increment()); // Output: 6
 console.log(counter.reset());     // Output: 5
 console.log(counter.decrement()); // Output: 4
