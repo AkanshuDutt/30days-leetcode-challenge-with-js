@@ -20,7 +20,7 @@ var createCounter = function(init) {
     };
 };
 
-// Function create karna
+
 const counter = createCounter(5);
 
 
