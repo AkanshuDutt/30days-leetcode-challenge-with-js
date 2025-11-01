@@ -22,7 +22,7 @@ console.log(expect(5).notToBe(10));
 
 
 try {
-  expect(5).toBe(10);       // Error: Not Equal
+  expect(5).toBe(10);       
 } catch (err) {
   console.log(err.message);
 }
