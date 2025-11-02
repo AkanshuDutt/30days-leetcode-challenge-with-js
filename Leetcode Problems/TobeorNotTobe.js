@@ -28,7 +28,7 @@ try {
 }
 
 try {
-  expect(5).notToBe(5);     // Error: Equal
+  expect(5).notToBe(5);     // Error: Equa
 } catch (err) {
   console.log(err.message);
 }
