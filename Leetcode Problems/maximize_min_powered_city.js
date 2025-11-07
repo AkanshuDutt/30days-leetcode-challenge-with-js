@@ -46,7 +46,7 @@ var maxPower = function (stations, r, k) {
     return res;
 };
 
-
+//  Solution 
 
 
 // 1. Each city has some power stations, and every station supplies power to cities within a distance `r`.
