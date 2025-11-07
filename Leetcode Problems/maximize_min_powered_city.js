@@ -47,7 +47,7 @@ var maxPower = function (stations, r, k) {
 };
 
 
-// Here’s a concise **English explanation 
+// Here’s a concise
 
 // 1. Each city has some power stations, and every station supplies power to cities within a distance `r`.
 // 2. The goal is to **maximize the minimum power** among all cities after adding up to `k` new stations anywhere.
