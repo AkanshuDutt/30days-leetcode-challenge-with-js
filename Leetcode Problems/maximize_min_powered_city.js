@@ -45,3 +45,12 @@ var maxPower = function (stations, r, k) {
     }
     return res;
 };
+
+
+// Here’s a concise **English explanation (4–5 lines)** of how the solution works:
+
+// 1. Each city has some power stations, and every station supplies power to cities within a distance `r`.
+// 2. The goal is to **maximize the minimum power** among all cities after adding up to `k` new stations anywhere.
+// 3. The code builds a **difference array (`cnt`)** to efficiently calculate the total power each city receives.
+// 4. The **`check(val)`** function tests whether it’s possible to give every city at least `val` power using the remaining `k` stations.
+// 5. Finally, **binary search** is used to find the largest `val` (the maximum possible minimum power) that can be achieved.
