@@ -1,4 +1,4 @@
-/**
+/*
 
 
 var createHelloWorld = function() {
