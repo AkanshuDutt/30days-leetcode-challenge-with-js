@@ -5,8 +5,9 @@ This repository contains my daily problem-solving journey, including solutions, 
 
 Each day’s challenge is organized in its own folder:
 - `day-01`, `day-02`,  
-- JavaScript solutions are in `problem.js`.  
+- JavaScript solutions are in problem.js.  
 - Problem statements and notes are in `problem.md`.
 
 This challenge helps me improve my **problem-solving skills**, **JavaScript knowledge**, and **algorithmic thinking**.
+
 
