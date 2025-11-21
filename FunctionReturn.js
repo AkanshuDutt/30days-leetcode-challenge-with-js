@@ -5,4 +5,4 @@ function f(a,b){
 }
 console.log(f(10,20));
 
-// ...
+//
