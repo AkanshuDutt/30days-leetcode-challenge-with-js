@@ -35,4 +35,4 @@ var maxSumDivThree = function (nums) {
     }
 
     return tot - remove;
-};,,
+};,
