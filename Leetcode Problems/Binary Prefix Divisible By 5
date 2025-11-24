@@ -1,6 +1,9 @@
-/* Binary Prefix Divisible By 5 */
-
-const answer = [];
+/**
+ * @param {number[]} nums
+ * @return {boolean[]}
+ */
+var prefixesDivBy5 = function(nums) {
+    const answer = [];
     let prefix = 0;
     const length = nums.length;
     for (let i = 0; i < length; i++) {
@@ -8,3 +11,4 @@ const answer = [];
         answer.push(prefix === 0);
     }
     return answer;
+};
