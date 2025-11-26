@@ -4,8 +4,7 @@ paths-in-matrix-whose-sum-is-divisible-by-k.......!
 /**
  * @param {number[][]} grid
  * @param {number} k
- * @return {number}
- */
+ 
 var numberOfPaths = function(grid, k) {
     const MOD = 1e9 + 7;
     const m = grid.length, n = grid[0].length;
