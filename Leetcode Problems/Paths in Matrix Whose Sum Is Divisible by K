@@ -14,6 +14,7 @@ var numberOfPaths = function(grid, k) {
     for (let j = 0; j < n; j++) {
         sum = (sum + grid[0][j]) % k;
         prev[j][sum] = 1;
+....
     }
 
     sum = grid[0][0] % k;
