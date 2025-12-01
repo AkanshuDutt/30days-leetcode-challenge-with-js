@@ -22,5 +22,5 @@ var maxRunTime = function(n, batteries) {
     }
 
     return left;
-    
+    // .......
 };
