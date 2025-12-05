@@ -6,9 +6,8 @@ Left subarray contains indices [0, i].
 Right subarray contains indices [i + 1, n - 1].
 Return the number of partitions where the difference between the sum of the left and right subarrays is even.
 
- 
 
-Example 1:
+Example 1
 
 Input: nums = [10,10,3,7,6]
 
