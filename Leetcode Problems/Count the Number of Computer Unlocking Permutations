@@ -1,10 +1,5 @@
 
 const MOD = 1_000_000_007;
-
-/**
- * @param {number[]} complexity
- * @return {number}
- */
 var countPermutations = function (complexity) {
     const n = complexity.length;
     const first = complexity[0];
