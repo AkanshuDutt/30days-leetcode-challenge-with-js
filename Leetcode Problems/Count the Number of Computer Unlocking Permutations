@@ -1,5 +1,5 @@
 
-const MOD = 1_000_000_007;
+
 var countPermutations = function (complexity) {
     const n = complexity.length;
     const first = complexity[0];
