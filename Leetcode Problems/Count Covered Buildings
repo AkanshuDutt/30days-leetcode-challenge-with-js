@@ -22,6 +22,5 @@ var countCoveredBuildings = function (n, buildings) {
             res++;
         }
     }
-
     return res;
 };
