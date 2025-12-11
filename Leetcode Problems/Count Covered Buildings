@@ -13,7 +13,6 @@ var countCoveredBuildings = function (n, buildings) {
         maxCol[x] = Math.max(maxCol[x], y);
         minCol[x] = Math.min(minCol[x], y);
     }
-
     let res = 0;
     for (const p of buildings) {
         const x = p[0],
