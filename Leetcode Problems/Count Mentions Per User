@@ -1,4 +1,4 @@
-............
+
 var countMentions = function (numberOfUsers, events) {
     events.sort((a, b) => {
         const timeA = parseInt(a[1]);
