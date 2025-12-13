@@ -1,6 +1,6 @@
 
 ......................
-C++ solution  / java solution
+
 
 const categories = ['electronics', 'grocery', 'pharmacy', 'restaurant'];
 const regex = /^\w+$/;
