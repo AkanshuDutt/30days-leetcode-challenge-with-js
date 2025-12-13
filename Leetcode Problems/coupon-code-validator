@@ -2,6 +2,34 @@
 ......................
 C++ solution  / java solution
 
+const categories = ['electronics', 'grocery', 'pharmacy', 'restaurant'];
+const regex = /^\w+$/;
+
+const validateCoupons = (code, businessLine, isActive) => {
+    const n = code.length;
+    const valid = [];
+    for (let i = 0, cid = -1; i < n; ++i) {
+        if (isActive[i] && (cid = categories.indexOf(businessLine[i])) !== -1 && regex.test(code[i])) {
+            valid.push(i | cid << 8);
+        }
+    }
+    valid.sort((a, b) => {
+        const dcat = (a >> 8) - (b >> 8);
+        if (dcat !== 0) return dcat;
+        const codea = code[a & 255];
+        const codeb = code[b & 255];
+        if (codea > codeb) return 1;
+        if (codea < codeb) return -1;
+        return 0;
+    });
+    const validCodes = [];
+    const m = valid.length;
+    for (let i = 0; i < m; ++i) {
+        validCodes.push(code[valid[i] & 255]);
+    }
+    return validCodes;
+};
+
 
 
 
