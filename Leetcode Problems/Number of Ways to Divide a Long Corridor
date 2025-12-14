@@ -1,6 +1,4 @@
-/**
- * @param {string} corridor
- 
+
 var numberOfWays = function(corridor) {
     const mod = 10**9 + 7;
     let zero = 0;
