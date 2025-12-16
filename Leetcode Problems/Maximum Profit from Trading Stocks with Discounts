@@ -10,8 +10,7 @@ var maxProfit = function (n, present, future, hierarchy, budget) {
         const cost = present[u];
         const dCost = Math.floor(present[u] / 2); // discounted cost
 
-        // dp[u][state][budget]
-        // state: 0 = not purchasing parent node, 1 = purchasing parent node
+       
         const dp0 = new Array(budget + 1).fill(0);
         const dp1 = new Array(budget + 1).fill(0);
 
