@@ -15,8 +15,8 @@ var maxProfit = function (n, present, future, hierarchy, budget) {
         const dp0 = new Array(budget + 1).fill(0);
         const dp1 = new Array(budget + 1).fill(0);
 
-        // subProfit[state][budget]
-        // state = 0: discount not available, state = 1: discount available
+    
+
         const subProfit0 = Array(budget + 1).fill(0);
         const subProfit1 = Array(budget + 1).fill(0);
 
