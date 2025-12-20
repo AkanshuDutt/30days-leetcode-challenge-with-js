@@ -16,6 +16,6 @@ function maxProfit(prices, strategy, k) {
         res = Math.max(res, leftProfit + changeProfit + rightProfit);
     }
     return res;
-}.
+}
 
 
