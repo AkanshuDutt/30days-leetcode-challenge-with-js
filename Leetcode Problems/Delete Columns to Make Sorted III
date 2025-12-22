@@ -1,6 +1,4 @@
-/**
- * @param {string[]} strs
- 
+
 var minDeletionSize = function(strs) {
     const cols = strs[0].length;
     const rows = strs.length;
