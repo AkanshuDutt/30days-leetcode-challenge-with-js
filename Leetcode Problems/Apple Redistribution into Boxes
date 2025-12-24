@@ -1,3 +1,6 @@
+ Solution  in js of this problem and 
+ low memory consumming  solution Easy and fast 
+
 
 const minimumBoxes = (apple, cap) => {
     let sum = apple.reduce((a, c) => a + c, 0);    
