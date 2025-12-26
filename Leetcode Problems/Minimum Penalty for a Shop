@@ -1,4 +1,3 @@
-
 const bestClosingTime = customers => {
     let bestTime = 0;
     let minPenalty = 0;
