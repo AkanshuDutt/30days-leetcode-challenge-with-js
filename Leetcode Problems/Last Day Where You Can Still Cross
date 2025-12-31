@@ -13,7 +13,6 @@ var latestDayToCross = function(row, col, cells) {
         else if (rank[a] > rank[b]) parent[b] = a;
         else { parent[b] = a; rank[a]++; }
     };
-
     const dir = [[1,0],[-1,0],[0,1],[0,-1]];
 
     for (let d = cells.length - 1; d >= 0; d--) {
