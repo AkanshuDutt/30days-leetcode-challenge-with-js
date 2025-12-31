@@ -1,1 +1,38 @@
+var latestDayToCross = function(row, col, cells) {
+    const n = row * col;
+    const top = n, bottom = n + 1;
+    const parent = Array(n + 2).fill(0).map((_, i) => i);
+    const rank = Array(n + 2).fill(0);
+    const land = Array(n).fill(false);
 
+    const find = x => parent[x] === x ? x : parent[x] = find(parent[x]);
+    const unite = (a, b) => {
+        a = find(a); b = find(b);
+        if (a === b) return;
+        if (rank[a] < rank[b]) parent[a] = b;
+        else if (rank[a] > rank[b]) parent[b] = a;
+        else { parent[b] = a; rank[a]++; }
+    };
+
+    const dir = [[1,0],[-1,0],[0,1],[0,-1]];
+
+    for (let d = cells.length - 1; d >= 0; d--) {
+        const r = cells[d][0] - 1, c = cells[d][1] - 1;
+        const id = r * col + c;
+        land[id] = true;
+
+        for (const [dr, dc] of dir) {
+            const nr = r + dr, nc = c + dc;
+            if (nr >= 0 && nc >= 0 && nr < row && nc < col) {
+                const nid = nr * col + nc;
+                if (land[nid]) unite(id, nid);
+            }
+        }
+
+        if (r === 0) unite(id, top);
+        if (r === row - 1) unite(id, bottom);
+
+        if (find(top) === find(bottom)) return d;
+    }
+    return 0;
+};
