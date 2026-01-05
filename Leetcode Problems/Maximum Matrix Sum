@@ -11,6 +11,5 @@ var maxMatrixSum = function(matrix) {
             minAbs = Math.min(minAbs, av);
         }
     }
-    return neg % 2 === 0 ? totalSum : totalSum - 2 * minAbs;
-};
+    return neg % 2 === 0 ? totalSum : totalSum - 2 * minAbs; };
 
