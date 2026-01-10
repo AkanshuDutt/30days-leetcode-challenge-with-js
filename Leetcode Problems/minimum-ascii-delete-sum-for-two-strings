@@ -10,10 +10,8 @@ var minimumDeleteSum = function(s1, s2) {
                 dp[i + 1][j + 1] = Math.max(dp[i][j + 1], dp[i + 1][j]);
         }
     }
-
     let total = 0;
     for (const c of s1) total += c.charCodeAt(0);
     for (const c of s2) total += c.charCodeAt(0);
-
     return total - 2 * dp[n][m];
 };
