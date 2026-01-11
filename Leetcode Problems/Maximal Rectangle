@@ -4,7 +4,6 @@ var maximalRectangle = function(matrix) {
     const cols = matrix[0].length;
     let heights = new Array(cols).fill(0);
     let maxArea = 0;
-
     const largestRectangleArea = (heights) => {
         let stack = [];
         let max = 0;
