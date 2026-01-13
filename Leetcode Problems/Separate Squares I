@@ -7,7 +7,6 @@ var separateSquares = function(squares) {
         low = Math.min(low, y);
         high = Math.max(high, y + l);
     }
-
     for (let i = 0; i < 80; i++) {
         let mid = (low + high) / 2;
         let areaBelow = 0;
