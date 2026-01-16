@@ -3,7 +3,6 @@ var maximizeSquareArea = function (m, n, hFences, vFences) {
 
     hFences.push(1, m);
     vFences.push(1, n);
-
     hFences.sort((a, b) => a - b);
     vFences.sort((a, b) => a - b);
 
