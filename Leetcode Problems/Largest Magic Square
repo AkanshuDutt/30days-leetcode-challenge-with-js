@@ -11,7 +11,6 @@ var largestMagicSquare = function(grid) {
             if (x === i) sum = s;
             else if (sum !== s) return false;
         }
-
         for (let y = j; y < j + k; y++) {
             let s = 0;
             for (let x = i; x < i + k; x++) s += grid[x][y];
