@@ -1,1 +1,38 @@
+var largestMagicSquare = function(grid) {
+    const m = grid.length, n = grid[0].length;
+    let res = 1;
 
+    const isValid = (i, j, k) => {
+        let sum = 0;
+
+        for (let x = i; x < i + k; x++) {
+            let s = 0;
+            for (let y = j; y < j + k; y++) s += grid[x][y];
+            if (x === i) sum = s;
+            else if (sum !== s) return false;
+        }
+
+        for (let y = j; y < j + k; y++) {
+            let s = 0;
+            for (let x = i; x < i + k; x++) s += grid[x][y];
+            if (sum !== s) return false;
+        }
+
+        let s = 0;
+        for (let d = 0; d < k; d++) s += grid[i + d][j + d];
+        if (sum !== s) return false;
+
+        s = 0;
+        for (let d = 0; d < k; d++) s += grid[i + d][j + k - 1 - d];
+        return sum === s;
+    };
+
+    for (let k = 2; k <= Math.min(m, n); k++) {
+        for (let i = 0; i + k <= m; i++) {
+            for (let j = 0; j + k <= n; j++) {
+                if (isValid(i, j, k)) res = k;
+            }
+        }
+    }
+    return res;
+};
