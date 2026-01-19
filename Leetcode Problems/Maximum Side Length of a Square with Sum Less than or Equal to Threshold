@@ -1,1 +1,58 @@
+class Solution {
+    isValid(pref, k, limit) {
+        const n = pref.length;
+        const m = pref[0].length;
 
+        for (let i = k - 1; i < n; i++) {
+            for (let j = k - 1; j < m; j++) {
+                const x1 = i - k + 1;
+                const y1 = j - k + 1;
+
+                let sum = pref[i][j];
+                if (x1 > 0) sum -= pref[x1 - 1][j];
+                if (y1 > 0) sum -= pref[i][y1 - 1];
+                if (x1 > 0 && y1 > 0) sum += pref[x1 - 1][y1 - 1];
+
+                if (sum <= limit)
+                    return true;
+            }
+        }
+        return false;
+    }
+
+    maxSideLength(mat, threshold) {
+        const n = mat.length;
+        const m = mat[0].length;
+
+        const pref = mat.map(row => [...row]);
+
+        // Row-wise prefix sum
+        for (let i = 0; i < n; i++) {
+            for (let j = 1; j < m; j++) {
+                pref[i][j] += pref[i][j - 1];
+            }
+        }
+
+        // Column-wise prefix sum
+        for (let j = 0; j < m; j++) {
+            for (let i = 1; i < n; i++) {
+                pref[i][j] += pref[i - 1][j];
+            }
+        }
+
+        let low = 1, high = Math.min(n, m);
+        let ans = 0;
+
+        while (low <= high) {
+            const mid = Math.floor((low + high) / 2);
+            if (this.isValid(pref, mid, threshold)) {
+                ans = mid;
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+
+        return ans;
+    }
+}
