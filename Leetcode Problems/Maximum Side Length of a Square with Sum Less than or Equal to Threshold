@@ -1,58 +1,38 @@
-class Solution {
-    isValid(pref, k, limit) {
-        const n = pref.length;
-        const m = pref[0].length;
-
-        for (let i = k - 1; i < n; i++) {
-            for (let j = k - 1; j < m; j++) {
-                const x1 = i - k + 1;
-                const y1 = j - k + 1;
-
-                let sum = pref[i][j];
-                if (x1 > 0) sum -= pref[x1 - 1][j];
-                if (y1 > 0) sum -= pref[i][y1 - 1];
-                if (x1 > 0 && y1 > 0) sum += pref[x1 - 1][y1 - 1];
-
-                if (sum <= limit)
-                    return true;
-            }
+/**
+ * @param {number[][]} mat
+ * @param {number} threshold
+ * @return {number}
+ */
+var maxSideLength = function(mat, threshold) {
+    const m = mat.length, n = mat[0].length;
+    const prefix = Array.from({length: m + 1}, () => Array(n + 1).fill(0));
+    
+    for (let i = 0; i < m; i++) {
+        for (let j = 0; j < n; j++) {
+            prefix[i + 1][j + 1] = mat[i][j] + prefix[i][j + 1] + prefix[i + 1][j] - prefix[i][j];
         }
-        return false;
     }
-
-    maxSideLength(mat, threshold) {
-        const n = mat.length;
-        const m = mat[0].length;
-
-        const pref = mat.map(row => [...row]);
-
-        // Row-wise prefix sum
-        for (let i = 0; i < n; i++) {
-            for (let j = 1; j < m; j++) {
-                pref[i][j] += pref[i][j - 1];
+    
+    let left = 0, right = Math.min(m, n), ans = 0;
+    
+    while (left <= right) {
+        const mid = Math.floor((left + right) / 2);
+        let found = false;
+        
+        for (let i = mid; i <= m && !found; i++) {
+            for (let j = mid; j <= n && !found; j++) {
+                const total = prefix[i][j] - prefix[i - mid][j] - prefix[i][j - mid] + prefix[i - mid][j - mid];
+                if (total <= threshold) found = true;
             }
         }
-
-        // Column-wise prefix sum
-        for (let j = 0; j < m; j++) {
-            for (let i = 1; i < n; i++) {
-                pref[i][j] += pref[i - 1][j];
-            }
+        
+        if (found) {
+            ans = mid;
+            left = mid + 1;
+        } else {
+            right = mid - 1;
         }
-
-        let low = 1, high = Math.min(n, m);
-        let ans = 0;
-
-        while (low <= high) {
-            const mid = Math.floor((low + high) / 2);
-            if (this.isValid(pref, mid, threshold)) {
-                ans = mid;
-                low = mid + 1;
-            } else {
-                high = mid - 1;
-            }
-        }
-
-        return ans;
     }
-}
+    
+    return ans;
+};
