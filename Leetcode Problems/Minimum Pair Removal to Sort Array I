@@ -1,7 +1,6 @@
-
 var isSorted = function(nums, n) {
-    for(let i = 1; i < n; i++) {
-        if(nums[i] < nums[i - 1]) return false;
+for(let i = 1; i < n; i++) {
+    if(nums[i] < nums[i - 1]) return false;
     }
     return true;
 }
