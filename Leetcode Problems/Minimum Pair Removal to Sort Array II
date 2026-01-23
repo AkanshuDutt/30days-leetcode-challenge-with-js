@@ -1,1 +1,102 @@
+function minimumPairRemoval(nums) {
+  const n = nums.length;
+  if (n <= 1) return 0;
 
+  const a = nums.slice();
+  const nxt = new Array(n).fill(0);
+  const pre = new Array(n).fill(0);
+  const alive = new Array(n).fill(true);
+
+  for (let i = 0; i < n; i++) {
+    nxt[i] = i + 1;
+    pre[i] = i - 1;
+  }
+
+  // min-heap for pairs [sum, idx]
+  const heap = [];
+  const push = (sum, idx) => {
+    heap.push([sum, idx]);
+    let i = heap.length - 1;
+    while (i > 0) {
+      const p = (i - 1) >> 1;
+      if (heap[p][0] > heap[i][0] || (heap[p][0] === heap[i][0] && heap[p][1] > heap[i][1])) {
+        [heap[p], heap[i]] = [heap[i], heap[p]];
+        i = p;
+      } else break;
+    }
+  };
+  const pop = () => {
+    if (!heap.length) return null;
+    const top = heap[0];
+    const last = heap.pop();
+    if (heap.length) {
+      heap[0] = last;
+      let i = 0;
+      while (true) {
+        let l = i * 2 + 1, r = i * 2 + 2, smallest = i;
+        if (l < heap.length && (heap[l][0] < heap[smallest][0] || (heap[l][0] === heap[smallest][0] && heap[l][1] < heap[smallest][1]))) smallest = l;
+        if (r < heap.length && (heap[r][0] < heap[smallest][0] || (heap[r][0] === heap[smallest][0] && heap[r][1] < heap[smallest][1]))) smallest = r;
+        if (smallest === i) break;
+        [heap[i], heap[smallest]] = [heap[smallest], heap[i]];
+        i = smallest;
+      }
+    }
+    return top;
+  };
+
+  // initial heap of adjacent pairs
+  for (let i = 0; i < n - 1; i++) push(a[i] + a[i + 1], i);
+
+  // count inversions (places that violate non-decreasing)
+  let inv = 0;
+  for (let i = 0; i < n - 1; i++) if (a[i] > a[i + 1]) inv++;
+
+  let ans = 0;
+  while (inv > 0 && heap.length) {
+    const top = pop();
+    if (!top) break;
+    const [sum, i] = top;
+    if (!alive[i]) continue;
+    const j = nxt[i];
+    if (j >= n || j < 0 || !alive[j]) continue;
+    if (a[i] + a[j] !== sum) {
+      // values changed, stale entry
+      continue;
+    }
+
+    // merge i and j into i
+    const p = pre[i], q = nxt[j];
+
+    // adjust inversion count: remove relations that will disappear
+    if (p >= 0 && alive[p]) {
+      if (a[p] > a[i]) inv--;
+    }
+    if (alive[i] && alive[j]) {
+      if (a[i] > a[j]) inv--;
+    }
+    if (q < n && q >= 0 && alive[q]) {
+      if (a[j] > a[q]) inv--;
+    }
+
+    // perform merge
+    a[i] = a[i] + a[j];
+    // remove j
+    alive[j] = false;
+    nxt[i] = q;
+    if (q < n && q >= 0) pre[q] = i;
+
+    // update relations and inv count after merge
+    if (p >= 0 && alive[p]) {
+      if (a[p] > a[i]) inv++;
+      push(a[p] + a[i], p);
+    }
+    if (q < n && q >= 0 && alive[q]) {
+      if (a[i] > a[q]) inv++;
+      push(a[i] + a[q], i);
+    }
+
+    ans++;
+  }
+
+  return ans;
+}
