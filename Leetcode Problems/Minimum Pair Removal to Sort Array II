@@ -6,12 +6,10 @@ function minimumPairRemoval(nums) {
   const nxt = new Array(n).fill(0);
   const pre = new Array(n).fill(0);
   const alive = new Array(n).fill(true);
-
   for (let i = 0; i < n; i++) {
     nxt[i] = i + 1;
     pre[i] = i - 1;
   }
-
   // min-heap for pairs [sum, idx]
   const heap = [];
   const push = (sum, idx) => {
