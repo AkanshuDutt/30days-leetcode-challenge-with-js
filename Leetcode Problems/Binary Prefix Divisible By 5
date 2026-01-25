@@ -1,4 +1,3 @@
-
 var prefixesDivBy5 = function(nums) {
     const answer = [];
     let prefix = 0;
