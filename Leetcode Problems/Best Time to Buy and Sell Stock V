@@ -33,6 +33,5 @@ var maximumProfit = function (prices, k) {
         return res;
     };
     return dfs(n - 1, k, 0);
-};
-
+}
 
