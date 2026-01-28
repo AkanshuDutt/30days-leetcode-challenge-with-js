@@ -1,4 +1,3 @@
-
 function minCost(grid, k) {
     const m = grid.length,
         n = grid[0].length;
