@@ -1,12 +1,5 @@
 
-/**
- * @param {string} source
- * @param {string} target
- * @param {character[]} original
- * @param {character[]} changed
- * @param {number[]} cost
- * @return {number}
- */
+
 var minimumCost = function(source, target, original, changed, cost) {
     const inf = Number.MAX_VALUE;
     const n = 26;
