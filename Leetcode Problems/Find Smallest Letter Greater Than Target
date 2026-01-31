@@ -1,4 +1,3 @@
-
 var nextGreatestLetter = function(letters, target) {
     let res = letters[0];
     let flag = false;
