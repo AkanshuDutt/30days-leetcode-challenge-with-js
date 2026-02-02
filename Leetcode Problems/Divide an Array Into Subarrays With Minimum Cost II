@@ -12,7 +12,6 @@ var minimumCost = function(nums, k, dist) {
             bitSum[r] += v; bitCount[r] += c;
         }
     };
-
     let maxP = 1;
     while ((maxP << 1) <= m) maxP <<= 1;
     let minExtra = Infinity;
