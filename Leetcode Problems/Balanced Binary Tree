@@ -7,10 +7,7 @@
  *     this.right = (right===undefined ? null : right)
  * }
  */
-/**
- * @param {TreeNode} root
- * @return {boolean}
- */
+
 var isBalanced = function(root) {
      return dfs(root) !== -1;
 };
