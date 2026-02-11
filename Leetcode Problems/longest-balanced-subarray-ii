@@ -1,8 +1,4 @@
 
-/**
- * @param {number[]} nums
- * @return {number}
- */
 var longestBalanced = function(nums) {
     const n = nums.length;
     const pos = new Map();
