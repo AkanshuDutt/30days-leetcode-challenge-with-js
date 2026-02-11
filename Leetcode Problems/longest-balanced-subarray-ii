@@ -6,7 +6,6 @@ var longestBalanced = function(nums) {
         if (!pos.has(nums[i])) pos.set(nums[i], []);
         pos.get(nums[i]).push(i);
     }
-
     class SegTree {
         constructor(n) {
             this.n = n;
