@@ -1,8 +1,5 @@
 
-/**
- * @param {string} s
- * @return {number}
- */
+
 var longestBalanced = function (s) {
   const n = s.length;
   let ans = 0;
