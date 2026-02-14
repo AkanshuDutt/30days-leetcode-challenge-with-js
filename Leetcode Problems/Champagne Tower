@@ -1,10 +1,3 @@
-
-/**
- * @param {number} poured
- * @param {number} query_row
- * @param {number} query_glass
- * @return {number}
- */
 var champagneTower = function(poured, query_row, query_glass) {
    let dp = new Array(query_row + 1).fill(0);
      dp[0] = poured;
