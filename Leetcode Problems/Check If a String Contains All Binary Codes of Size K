@@ -1,9 +1,4 @@
 
-/**
- * @param {string} s
- * @param {number} k
- * @return {boolean}
- */
 var hasAllCodes = function(s, k) {
     const req = 1 << k;
     const n = s.length;
