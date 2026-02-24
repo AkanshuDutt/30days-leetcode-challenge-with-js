@@ -1,4 +1,3 @@
-
 var sumRootToLeaf = function(root) {
     const dfs = (node, cur) => {
         if (!node) return 0;
