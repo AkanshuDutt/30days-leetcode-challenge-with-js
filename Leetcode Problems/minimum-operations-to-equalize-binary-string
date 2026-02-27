@@ -10,13 +10,10 @@ function minOperations(s, k) {
         if (last[x] !== x) last[x] = getLast(last[x]);
         return last[x];
     }
-
-    let cnt0 = 0;
-
+let cnt0 = 0;
     for (let i = 0; i < n; i++) {
         if (s[i] === "0") cnt0++;
     }
-
     if (cnt0 === 0) return 0;
     if (cnt0 % 2 === 1 && k % 2 === 0) return -1;
 
