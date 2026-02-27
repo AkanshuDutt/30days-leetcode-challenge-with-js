@@ -1,1 +1,81 @@
 
+function minOperations(s, k) {
+    const n = s.length;
+    if (n < k) return -1;
+
+    const seen = Array(n + 1).fill(false);
+    const last = Array.from({ length: n + 1 }, (_, i) => i);
+
+    function getLast(x) {
+        if (last[x] !== x) last[x] = getLast(last[x]);
+        return last[x];
+    }
+
+    let cnt0 = 0;
+
+    for (let i = 0; i < n; i++) {
+        if (s[i] === "0") cnt0++;
+    }
+
+    if (cnt0 === 0) return 0;
+    if (cnt0 % 2 === 1 && k % 2 === 0) return -1;
+
+    seen[cnt0] = true;
+
+    class Deque {
+        constructor() {
+            this.data = [];
+            this.head = 0;
+        }
+
+        pushBack(item) {
+            this.data.push(item);
+        }
+
+        popFront() {
+            if (this.head >= this.data.length) return undefined;
+
+            const val = this.data[this.head];
+            this.head++;
+
+            if (this.head > 50 && this.head * 2 > this.data.length) {
+                this.data = this.data.slice(this.head);
+                this.head = 0;
+            }
+            return val;
+        }
+
+        isEmpty() { return this.head >= this.data.length; }
+    }
+
+    const q = new Deque();
+    q.pushBack([cnt0, 0]);
+
+    while (!q.isEmpty()) {
+        const cur = q.popFront();
+        const [cur0, ops] = cur;
+        const lo = Math.max(0, cur0 + k - n);
+        const hi = Math.min(k, cur0);
+        const new0_hi = cur0 + k - 2 * lo;
+        const new0_lo = cur0 + k - 2 * hi;
+        let new0 = getLast(new0_lo);
+
+        while (new0 <= new0_hi) {
+            if (new0 === 0) return ops + 1;
+
+            if (!seen[new0]) {
+                seen[new0] = true;
+                q.pushBack([new0, ops + 1]);
+            }
+
+            if (new0 + 2 < last.length) {
+                last[new0] = getLast(new0 + 2);
+                new0 = last[new0];
+            }
+
+            else new0 += 2;
+        }
+    }
+
+    return -1;
+}
