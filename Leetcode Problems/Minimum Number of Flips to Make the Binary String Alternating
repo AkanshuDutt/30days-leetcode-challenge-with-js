@@ -1,1 +1,18 @@
 
+const minFlips = s => {
+    const n = s.length;
+    const op = [0, 0];
+    let res = n;
+
+    for (let i = 0; i < n; i++)
+        op[(s.charCodeAt(i) ^ i) & 1]++;
+
+    for (let i = 0; i < n; i++) {
+        const c = s.charCodeAt(i);
+        op[(c ^ i) & 1]--;
+        op[(c ^ (n + i)) & 1]++;
+        res = Math.min(res, ...op);
+    }
+
+    return res;
+};
