@@ -3,7 +3,6 @@ const minFlips = s => {
     const n = s.length;
     const op = [0, 0];
     let res = n;
-
     for (let i = 0; i < n; i++)
         op[(s.charCodeAt(i) ^ i) & 1]++;
 
