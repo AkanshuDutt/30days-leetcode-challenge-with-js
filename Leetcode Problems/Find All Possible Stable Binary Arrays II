@@ -1,7 +1,6 @@
 var numberOfStableArrays = function(zero, one, limit) {
 
     const MOD = 1e9 + 7
-
     const dp = Array.from(
         {length:zero+1},
         ()=>Array.from({length:one+1},()=>[0,0])
