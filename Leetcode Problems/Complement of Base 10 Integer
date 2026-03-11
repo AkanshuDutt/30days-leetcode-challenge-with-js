@@ -1,17 +1,23 @@
-
 /**
  * @param {number} n
  * @return {number}
  */
 var bitwiseComplement = function(n) {
-      if (n === 0) 
-        return 1;
+    let str='';
+    let ans=0;
 
-    let mask = 0;
-    let x = n;
-    while (x) {
-        mask = (mask << 1) | 1;
-        x >>= 1;
+    if(n===0) return 1;
+
+    while(n>0){
+        str=str+n%2;
+        n=Math.floor(n/2);
     }
-    return mask ^ n;
+    console.log(str);
+
+    for(let i=0;i<str.length;i++){
+        if(str[i]==='0') ans+=Math.pow(2,i);
+    }
+    
+
+    return ans;
 };
