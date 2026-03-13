@@ -2,9 +2,7 @@ var minNumberOfSeconds = function(height, times) {
 
     let lo = 1n;
     let hi = 10000000000000000n;
-
     while (lo < hi) {
-
         let mid = (lo + hi) >> 1n;
         let totalLayers = 0;
 
