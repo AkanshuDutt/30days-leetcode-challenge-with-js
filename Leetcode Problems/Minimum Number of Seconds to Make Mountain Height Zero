@@ -1,1 +1,27 @@
+var minNumberOfSeconds = function(height, times) {
 
+    let lo = 1n;
+    let hi = 10000000000000000n;
+
+    while (lo < hi) {
+
+        let mid = (lo + hi) >> 1n;
+        let totalLayers = 0;
+
+        for (let t of times) {
+
+            if (totalLayers >= height)
+                break;
+
+            let layers = Math.floor(Math.sqrt((2 * Number(mid)) / t + 0.25) - 0.5);
+            totalLayers += layers;
+        }
+
+        if (totalLayers >= height)
+            hi = mid;
+        else
+            lo = mid + 1n;
+    }
+
+    return lo;
+};
