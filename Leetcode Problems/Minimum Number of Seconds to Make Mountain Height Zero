@@ -1,25 +1,47 @@
-var minNumberOfSeconds = function(height, times) {
+var minNumberOfSeconds = function(mountainHeight, workerTimes) {
 
-    let lo = 1n;
-    let hi = 10000000000000000n;
-    while (lo < hi) {
-        let mid = (lo + hi) >> 1n;
-        let totalLayers = 0;
-
-        for (let t of times) {
-
-            if (totalLayers >= height)
-                break;
-
-            let layers = Math.floor(Math.sqrt((2 * Number(mid)) / t + 0.25) - 0.5);
-            totalLayers += layers;
-        }
-
-        if (totalLayers >= height)
-            hi = mid;
-        else
-            lo = mid + 1n;
+    function verify(power,time,mid){
+        let sum = mid*(mid+1)/2;
+        return Math.floor(time/power) >= sum;
     }
 
-    return lo;
+    function check(time,mountainHeight){
+
+        for(let power of workerTimes){
+
+            let lo=-1,hi=1e9;
+
+            while(hi-lo>1){
+
+                let mid=Math.floor((hi+lo)/2);
+
+                if(verify(power,time,mid)){
+                    lo=mid;
+                }
+                else{
+                    hi=mid;
+                }
+            }
+
+            mountainHeight-=lo;
+        }
+
+        return mountainHeight>0?0:1;
+    }
+
+    let lo=0,hi=1e18;
+
+    while(hi-lo>1){
+
+        let mid=Math.floor((hi+lo)/2);
+
+        if(check(mid,mountainHeight)){
+            hi=mid;
+        }
+        else{
+            lo=mid;
+        }
+    }
+
+    return hi;
 };
