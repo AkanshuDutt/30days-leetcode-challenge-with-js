@@ -3,7 +3,6 @@ var getBiggestThree = function(grid) {
 
     const m = grid.length;
     const n = grid[0].length;
-
     const set = new Set();
 
     for(let i=0;i<m;i++){
