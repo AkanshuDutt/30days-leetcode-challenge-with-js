@@ -1,7 +1,6 @@
 
 var numberOfSubmatrices = function(grid) {
     let n = grid.length, m = grid[0].length;
-    
     let sum = Array.from({length: 2}, () => Array(m + 1).fill(0));
     let countX = Array.from({length: 2}, () => Array(m + 1).fill(0));
     let ans = 0;
