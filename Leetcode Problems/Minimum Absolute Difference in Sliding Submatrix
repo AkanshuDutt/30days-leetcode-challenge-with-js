@@ -1,5 +1,3 @@
-
-// Added using AI
 var minAbsDiff = function(grid, k) {
     const m = grid.length, n = grid[0].length;
     const ans = Array.from({length: m - k + 1}, () => new Array(n - k + 1).fill(0));
