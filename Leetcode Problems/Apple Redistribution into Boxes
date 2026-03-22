@@ -9,6 +9,5 @@ const minimumBoxes = (apple, cap) => {
     let res = 0;
     while (sum > 0)
         sum -= cap[res++];
-    
     return res;
 };
