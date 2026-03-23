@@ -1,4 +1,3 @@
-
 var maxProductPath = function (grid) {
     const MOD = 1000000007;
     const m = grid.length,
