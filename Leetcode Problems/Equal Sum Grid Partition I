@@ -1,1 +1,33 @@
 
+var canPartitionGrid = function(grid) {
+    const m = grid.length, n = grid[0].length;
+    let total = 0;
+
+    const row = new Array(m).fill(0);
+    const col = new Array(n).fill(0);
+
+    for (let i = 0; i < m; i++) {
+        for (let j = 0; j < n; j++) {
+            total += grid[i][j];
+            row[i] += grid[i][j];
+            col[j] += grid[i][j];
+        }
+    }
+
+    if (total % 2 !== 0) return false;
+    const target = total / 2;
+
+    let sum = 0;
+    for (let i = 0; i < m - 1; i++) {
+        sum += row[i];
+        if (sum === target) return true;
+    }
+
+    sum = 0;
+    for (let j = 0; j < n - 1; j++) {
+        sum += col[j];
+        if (sum === target) return true;
+    }
+
+    return false;
+};
