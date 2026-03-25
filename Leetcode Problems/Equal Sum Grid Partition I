@@ -13,7 +13,6 @@ var canPartitionGrid = function(grid) {
             col[j] += grid[i][j];
         }
     }
-
     if (total % 2 !== 0) return false;
     const target = total / 2;
 
@@ -22,7 +21,6 @@ var canPartitionGrid = function(grid) {
         sum += row[i];
         if (sum === target) return true;
     }
-
     sum = 0;
     for (let j = 0; j < n - 1; j++) {
         sum += col[j];
