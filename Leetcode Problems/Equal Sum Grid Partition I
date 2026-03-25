@@ -1,4 +1,3 @@
-
 var canPartitionGrid = function(grid) {
     const m = grid.length, n = grid[0].length;
     let total = 0;
