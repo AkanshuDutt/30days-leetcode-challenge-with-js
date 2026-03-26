@@ -1,8 +1,5 @@
 
-/**
- * @param {number[][]} grid
- * @return {boolean}
- */
+
 var canPartitionGrid = function(grid) {
     const n = grid.length;
     const m = grid[0].length;
