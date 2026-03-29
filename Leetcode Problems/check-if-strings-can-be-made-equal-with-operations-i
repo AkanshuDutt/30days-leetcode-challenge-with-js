@@ -1,8 +1,5 @@
 
-/**
- * @param {string} s1
- * @param {string} s2
- * @return {boolean}
+/**eturn {boolean}
  */
 var canBeEqual = function(s1, s2) {
     let even1 = [s1[0], s1[2]].sort().join('');
