@@ -1,6 +1,4 @@
 
-/**eturn {boolean}
- */
 var canBeEqual = function(s1, s2) {
     let even1 = [s1[0], s1[2]].sort().join('');
     let even2 = [s2[0], s2[2]].sort().join('');
