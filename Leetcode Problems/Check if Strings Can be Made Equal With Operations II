@@ -1,1 +1,22 @@
 
+const checkStrings = (s1, s2) => {
+    const prime = [
+        2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41,
+        43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101
+    ];
+
+    const mod = 1e9 + 7;
+    const h1 = [1, 1];
+    const h2 = [1, 1];
+
+    for (let i = 0; i < s1.length; i++) {
+        const off = i & 1;
+        const a = prime[s1.charCodeAt(i) - 97];
+        const b = prime[s2.charCodeAt(i) - 97];
+
+        h1[off] = (h1[off] * a) % mod;
+        h2[off] = (h2[off] * b) % mod;
+    }
+
+    return h1[0] === h2[0] && h1[1] === h2[1];
+};
