@@ -17,7 +17,6 @@ var generateString = function (str1, str2) {
             }
         }
     }
-
     for (let i = 0; i < n; i++) {
         if (str1[i] === "F") {
             let flag = false;
