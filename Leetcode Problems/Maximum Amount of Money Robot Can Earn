@@ -1,8 +1,4 @@
 
-/**
- * @param {number[][]} coins
- * @return {number}
- */
 var maximumAmount = function(coins) {
     const m = coins.length;
     const n = coins[0].length;
