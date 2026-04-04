@@ -1,2 +1,19 @@
-
-Decode the Slanted Ciphertext
+/**
+ * @param {string} encodedText
+ * @param {number} rows
+ * @return {string}
+ */
+var decodeCiphertext = function(encodedText, rows) {
+    const ET=encodedText,R=rows,n=ET.length;
+    const C=n/R;
+    let res='';
+    for(let c=0;c<C;++c){
+        let i=0,j=c;
+        while(i*C+j<n){
+            res+=ET[i*C+j];
+            i+=1;j+=1;
+        }
+    }
+    res=res.trimRight();
+    return res;
+};
