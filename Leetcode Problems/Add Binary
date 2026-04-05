@@ -13,7 +13,6 @@ var addBinary = function(a, b) {
             sum += b[j] - '0';
             j--;
         }
-        
         result.push(sum % 2);
         carry = Math.floor(sum / 2);
     }
