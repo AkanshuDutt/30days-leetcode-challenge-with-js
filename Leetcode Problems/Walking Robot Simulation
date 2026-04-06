@@ -4,7 +4,6 @@ var robotSim = function(commands, obstacles) {
     for (const [x, y] of obstacles) {
         st.add(`${x},${y}`);
     }
-
     const dir = [[0,1], [1,0], [0,-1], [-1,0]];
 
     let x = 0, y = 0, d = 0, maxDist = 0;
