@@ -1,10 +1,5 @@
 
-/**
- * @param {number[]} robot
- * @param {number[][]} factory
- * @return {number}
- */
-// JavaScript
+
 
 var minimumTotalDistance = function(robot, factory) {
     robot.sort((a, b) => a - b);
