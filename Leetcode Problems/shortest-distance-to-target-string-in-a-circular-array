@@ -1,4 +1,3 @@
-
 var closestTarget = function(words, target, startIndex) {
     let n = words.length;
     let ans = Infinity;
