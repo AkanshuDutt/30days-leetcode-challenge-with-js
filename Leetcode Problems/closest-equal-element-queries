@@ -1,35 +1,109 @@
-
 /**
- * @param {number[]} nums
+ * @param {number[]} input
  * @param {number[]} queries
  * @return {number[]}
  */
-var closestEqualQueries = function(nums, queries) {
-    const n = nums.length;
-    const indices = new Map();
-    
-    for (let i = 0; i < n; i++) {
-        if (!indices.has(nums[i])) indices.set(nums[i], []);
-        indices.get(nums[i]).push(i);
+var solveQueries = function (input, queries) {
+    this.VALUE_OCCURS_ONLY_ONCE = -1;
+    return createListForMinCircularDistancePerValue(input, queries);
+};
+
+/**
+ * @param {number[]} input
+ * @param {number[]} queries
+ * @return {number[]}
+ */
+function createListForMinCircularDistancePerValue(input, queries) {
+    const minCircularDistancePerValue = new Array();
+    const valueToIndexes = createMapValueToIndexes(input);
+
+    for (let query of queries) {
+        const index = query;
+        const value = input[index];
+        const indexInListOfIndexes = binarySearch(valueToIndexes.get(value), index);
+
+        const minCircularDistance = getMinCircularDistance(valueToIndexes.get(value), indexInListOfIndexes, input.length);
+        minCircularDistancePerValue.push(minCircularDistance);
     }
-    
-    const minDist = new Array(n).fill(-1);
-    
-    for (const idxList of indices.values()) {
-        const k = idxList.length;
-        if (k < 2) continue;
-        
-        for (let p = 0; p < k; p++) {
-            const curr = idxList[p];
-            const prev = idxList[(p - 1 + k) % k];
-            const next = idxList[(p + 1) % k];
-            
-            const d1 = Math.abs(curr - prev);
-            const d2 = Math.abs(curr - next);
-            const dist = Math.min(d1, n - d1, d2, n - d2);
-            minDist[curr] = dist;
+    return minCircularDistancePerValue;
+}
+
+/**
+ * @param {number[]} input
+ * @return {Map<number, number[]>}
+ */
+function createMapValueToIndexes(input) {
+    const valueToIndexes = new Map();
+    for (let i = 0; i < input.length; ++i) {
+        if (!valueToIndexes.has(input[i])) {
+            valueToIndexes.set(input[i], new Array());
+        }
+        valueToIndexes.get(input[i]).push(i);
+    }
+    return valueToIndexes;
+}
+
+/**
+ * @param {number[]} indexes
+ * @param {number} index
+ * @param {number} sizeInput
+ * @return {number}
+ */
+function getCircularDistanceFromPreviousIndex(indexes, index, sizeInput) {
+    if (index > 0) {
+        return indexes[index] - indexes[index - 1];
+    }
+    return sizeInput - indexes[indexes.length - 1] + indexes[index];
+}
+
+/**
+ * @param {number[]} indexes
+ * @param {number} index
+ * @param {number} sizeInput
+ * @return {number}
+ */
+function getCircularDistanceFromFollowingIndex(indexes, index, sizeInput) {
+    if (index + 1 < indexes.length) {
+        return indexes[index + 1] - indexes[index];
+    }
+    return sizeInput - indexes[index] + indexes[0];
+}
+
+/**
+ * @param {number[]} indexes
+ * @param {number} index
+ * @param {number} sizeInput
+ * @return {number}
+ */
+function getMinCircularDistance(indexes, index, sizeInput) {
+    if (indexes.length === 1) {
+        return this.VALUE_OCCURS_ONLY_ONCE;
+    }
+    const previousDistance = getCircularDistanceFromPreviousIndex(indexes, index, sizeInput);
+    const followingDistance = getCircularDistanceFromFollowingIndex(indexes, index, sizeInput);
+    return Math.min(previousDistance, followingDistance);
+}
+
+/**
+ * @param {number[]} indexes
+ * @param {number} index
+ * @return {number}
+ */
+function binarySearch(indexes, index) {
+    let left = 0;
+    let right = indexes.length - 1;
+    const NOT_FOUND = -1;
+
+    while (left <= right) {
+        let mid = left + Math.floor((right - left) / 2);
+        if (indexes[mid] === index) {
+            return mid;
+        }
+        if (indexes[mid] < index) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
         }
     }
-    
-    return queries.map(q => minDist[q]);
-};
+    return NOT_FOUND;
+}
