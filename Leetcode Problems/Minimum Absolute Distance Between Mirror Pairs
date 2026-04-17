@@ -1,8 +1,4 @@
 
-/**
- * @param {number[]} nums
- * @return {number}
- */
 var minMirrorPairDistance = function(nums) {
     const map = new Map();
     let mini = Infinity;
