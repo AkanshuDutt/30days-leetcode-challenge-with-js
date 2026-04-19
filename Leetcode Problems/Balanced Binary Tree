@@ -1,6 +1,3 @@
-
-
-
 var isBalanced = function(root) {
      return dfs(root) !== -1;
 };
