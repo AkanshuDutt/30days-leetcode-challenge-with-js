@@ -1,5 +1,9 @@
-
-let left = 0, right = 0, space = 0;
+/**
+ * @param {string} moves
+ * @return {number}
+ */
+var furthestDistanceFromOrigin = function(moves) {
+    let left = 0, right = 0, space = 0;
     for (let c of moves) {
         if (c === 'L') {
             left++;
@@ -10,3 +14,4 @@ let left = 0, right = 0, space = 0;
         }
     }
     return Math.abs(left - right) + space;
+};
