@@ -1,1 +1,12 @@
 
+let left = 0, right = 0, space = 0;
+    for (let c of moves) {
+        if (c === 'L') {
+            left++;
+        } else if (c === 'R') {
+            right++;
+        } else {
+            space++;
+        }
+    }
+    return Math.abs(left - right) + space;
