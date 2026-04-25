@@ -5,7 +5,6 @@
          return c;
      }}
  const addTo2=Akanshu(2);
-   console.log(addTo2(5));
-
+   console.log(addTo2(5))
 
 
