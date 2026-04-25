@@ -14,7 +14,7 @@ var longestBalanced = function(nums) {
             else
             oddSet.add(nums[j]);
             if(evenSet.size === oddSet.size)
-               ans = Math.max(ans, j - i+1);
+              ans = Math.max(ans, j - i+1);
          }
     }
     return ans;
