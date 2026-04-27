@@ -1,6 +1,3 @@
-
-// Runtime: 184 ms, faster than 95.24%
-// Memory Usage: 50.9 MB, less than 100.00%
 var hasValidPath = function(grid) {
 	if (grid[0][0] === 5) return false;
 
