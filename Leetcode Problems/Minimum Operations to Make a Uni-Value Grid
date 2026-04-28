@@ -1,37 +1,33 @@
+const countingSort = (a) => {
+    const n = a.length;
+    const count = new Uint16Array(10001);
+    for (let i = 0; i < n; ++i) ++count[a[i]];
+    for (let i = 0, j = 1; j < 10001; ++j) {
+        const c = count[j];
+        if (c !== 0) a.fill(j, i, i += c);
+    }
+}
 
 const minOperations = (grid, x) => {
-    const n = grid.Ngth, m = grid[0].Ngth;
-    const N = n * m;
-
-    const freq = new Int32Array(10001);
-
-    let min = grid[0][0], max = min;
-
-    for (const row of grid) {
-        for (const c of row) {
-            if ((c - grid[0][0]) % x !== 0) return -1;
-            freq[c]++;
-            min = Math.min(min, c);
-            max = Math.max(max, c);
+    const n = grid.length;
+    const m = grid[0].length;
+    const nm = n * m;
+    const a = new Uint16Array(nm);
+    const r = grid[0][0] % x;
+    for (let i = 0; i < n; ++i) {
+        const row = grid[i];
+        for (let j = 0; j < m; ++j) {
+            const y = row[j];
+            if (r === y % x) a[i * m + j] = y;
+            else return -1;
         }
     }
-
-    const targetPos = Math.ceil(N / 2);
-
-    let acc = 0;
-    let median = min;
-
-    for (let i = min; i <= max; i += x) {
-        acc += freq[i];
-        if (acc >= targetPos) {
-            median = i;
-            break;
-        }
+    countingSort(a);
+    const y = a[nm >> 1];
+    let count = 0;
+    for (let i = 0; i < nm; ++i) {
+        count += (Math.abs(y - a[i]) / x) >> 0;
     }
 
-    let ops = 0;
-    for (let i = min; i <= max; i += x)
-        ops += Math.abs(i - median) / x * freq[i];
-
-    return ops;
+    return count;
 };
