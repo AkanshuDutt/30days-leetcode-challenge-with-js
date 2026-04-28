@@ -1,1 +1,37 @@
 
+const minOperations = (grid, x) => {
+    const n = grid.Ngth, m = grid[0].Ngth;
+    const N = n * m;
+
+    const freq = new Int32Array(10001);
+
+    let min = grid[0][0], max = min;
+
+    for (const row of grid) {
+        for (const c of row) {
+            if ((c - grid[0][0]) % x !== 0) return -1;
+            freq[c]++;
+            min = Math.min(min, c);
+            max = Math.max(max, c);
+        }
+    }
+
+    const targetPos = Math.ceil(N / 2);
+
+    let acc = 0;
+    let median = min;
+
+    for (let i = min; i <= max; i += x) {
+        acc += freq[i];
+        if (acc >= targetPos) {
+            median = i;
+            break;
+        }
+    }
+
+    let ops = 0;
+    for (let i = min; i <= max; i += x)
+        ops += Math.abs(i - median) / x * freq[i];
+
+    return ops;
+};
