@@ -1,8 +1,4 @@
 
-/**
- * @param {number[][]} grid
- * @return {number}
- */
 var maximumScore = function (grid) {
     const n = grid.length;
     if (n === 1) return 0;
