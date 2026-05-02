@@ -1,1 +1,31 @@
 
+var rotatedDigits = function(n) {
+    let count = 0;
+
+    for (let num = 1; num <= n; num++) {
+        let x = num;
+        let valid = true;
+        let changed = false;
+
+        while (x > 0) {
+            let digit = x % 10;
+
+            if (digit === 3 || digit === 4 || digit === 7) {
+                valid = false;
+                break;
+            }
+
+            if (digit === 2 || digit === 5 || digit === 6 || digit === 9) {
+                changed = true;
+            }
+
+            x = Math.floor(x / 10);
+        }
+
+        if (valid && changed) {
+            count++;
+        }
+    }
+
+    return count;
+};
