@@ -3,10 +3,7 @@ var rotateTheBox = function(box) {
 
     const rows = box.length;
     const cols = box[0].length;
-
-    // Apply gravity
     for (let r = 0; r < rows; r++) {
-
         let empty = cols - 1;
 
         for (let c = cols - 1; c >= 0; c--) {
