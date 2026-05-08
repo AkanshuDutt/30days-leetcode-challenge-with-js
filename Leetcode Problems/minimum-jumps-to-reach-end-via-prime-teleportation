@@ -4,8 +4,6 @@ var minJumps = function (nums) {
     if (n <= 1) return 0;
 
     const maxEl = Math.max(...nums);
-
-    // 1. Sieve
     const isPrime = new Array(maxEl + 1).fill(true);
     isPrime[0] = isPrime[1] = false;
     for (let p = 2; p * p <= maxEl; p++) {
@@ -15,7 +13,6 @@ var minJumps = function (nums) {
         }
     }
 
-    // 2. Map value to indices
     const valToIndices = new Map();
     for (let i = 0; i < n; i++) {
         if (!valToIndices.has(nums[i])) valToIndices.set(nums[i], []);
