@@ -12,7 +12,6 @@ var minJumps = function (nums) {
                 isPrime[i] = false;
         }
     }
-
     const valToIndices = new Map();
     for (let i = 0; i < n; i++) {
         if (!valToIndices.has(nums[i])) valToIndices.set(nums[i], []);
