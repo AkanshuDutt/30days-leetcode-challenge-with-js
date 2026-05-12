@@ -11,4 +11,4 @@ var minimumEffort = function(tasks) {
         currentEnergy -= actual;
     }
     return initialEnergy;
-};
+}
