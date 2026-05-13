@@ -1,4 +1,3 @@
-
 const largestSubmatrix = matrix => {
     const m = matrix.length;
     const n = matrix[0].length;
