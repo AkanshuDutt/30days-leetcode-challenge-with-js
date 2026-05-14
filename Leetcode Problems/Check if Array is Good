@@ -1,1 +1,16 @@
 
+/**
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+var isGood = function(nums) {
+    const n = nums.length;
+    const sorted_num = [...nums].sort((a, b) => a - b);
+    const expected = [];
+    for (let i = 1; i < n; i++) {
+        expected.push(i);
+    }
+
+    expected.push(n - 1);
+    return JSON.stringify(sorted_num) === JSON.stringify(expected);
+};
