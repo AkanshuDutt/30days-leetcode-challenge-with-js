@@ -1,12 +1,7 @@
-
 var findMin = function(arr) {
-
     let s = 0, e = arr.length - 1;
-
     while (s < e) {
-
         let mid = Math.floor((s + e) / 2);
-
         // Minimum is in right half
         if (arr[mid] > arr[e]) {
             s = mid + 1;
@@ -16,6 +11,5 @@ var findMin = function(arr) {
             e = mid;
         }
     }
-
     return arr[s];
 };
