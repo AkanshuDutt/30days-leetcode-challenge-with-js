@@ -1,1 +1,22 @@
 
+class Solution {
+
+    dfs(arr, idx, vis) {
+
+        if(idx < 0 || idx >= arr.length || vis[idx])
+            return false;
+
+        if(arr[idx] === 0)
+            return true;
+
+        vis[idx] = true;
+
+        return this.dfs(arr, idx + arr[idx], vis) ||
+               this.dfs(arr, idx - arr[idx], vis);
+    }
+
+    canReach(arr, start) {
+        let vis = new Array(arr.length).fill(false);
+        return this.dfs(arr, start, vis);
+    }
+}
