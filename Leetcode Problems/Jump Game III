@@ -1,22 +1,30 @@
+var findMin = function(nums) {
 
-class Solution {
+    let s = 0;
+    let e = nums.length - 1;
 
-    dfs(arr, idx, vis) {
+    while (s < e) {
 
-        if(idx < 0 || idx >= arr.length || vis[idx])
-            return false;
+        // Find middle index
+        let mid = Math.floor(s + (e - s) / 2);
 
-        if(arr[idx] === 0)
-            return true;
+        // Minimum lies in right half
+        if (nums[mid] > nums[e]) {
+            s = mid + 1;
+        }
 
-        vis[idx] = true;
+        // Minimum lies in left half including mid
+        else if (nums[mid] < nums[e]) {
+            e = mid;
+        }
 
-        return this.dfs(arr, idx + arr[idx], vis) ||
-               this.dfs(arr, idx - arr[idx], vis);
+        // Duplicate case
+        // Cannot determine correct side
+        else {
+            e--;
+        }
     }
 
-    canReach(arr, start) {
-        let vis = new Array(arr.length).fill(false);
-        return this.dfs(arr, start, vis);
-    }
-}
+    // s points to minimum element
+    return nums[s];
+};
